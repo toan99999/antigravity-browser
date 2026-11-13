@@ -13,16 +13,16 @@ WORK_DIR="$ROOT_DIR/dist/Reynard"
 BUILD_TYPE="${1:-normal}"
 case "$BUILD_TYPE" in
 	--trollstore)
-		OUTPUT_NAME="ChatGPT-TrollStore.tipa"
+		OUTPUT_NAME="Antigravity-TrollStore.tipa"
 		PTRACE_JIT_NAME="ts_ptrace_jit"
 		;;
 	--jailbroken)
-		OUTPUT_NAME="ChatGPT-Jailbroken.ipa"
+		OUTPUT_NAME="Antigravity-Jailbroken.ipa"
 		PTRACE_JIT_NAME="jb_ptrace_jit"
 		;;
 	*)
 		BUILD_TYPE="normal"
-		OUTPUT_NAME="ChatGPT.ipa"
+		OUTPUT_NAME="Antigravity.ipa"
 		;;
 esac
 
@@ -42,9 +42,9 @@ fi
 
 # I absolutely hate Apple for this
 # Why is my bundle identifier just become unavailable for no reason?
-plutil -replace CFBundleIdentifier -string "ai.chatgpt.browser" "$APP_PATH/Info.plist"
-plutil -replace CFBundleIdentifier -string "ai.chatgpt.browser.Helper" "$APP_PATH/PlugIns/Reynard Helper.appex/Info.plist"
-plutil -replace CFBundleIdentifier -string "ai.chatgpt.browser.OpenIn" "$APP_PATH/PlugIns/OpenIn.appex/Info.plist"
+plutil -replace CFBundleIdentifier -string "ai.antigravity.browser" "$APP_PATH/Info.plist"
+plutil -replace CFBundleIdentifier -string "ai.antigravity.browser.Helper" "$APP_PATH/PlugIns/Reynard Helper.appex/Info.plist"
+plutil -replace CFBundleIdentifier -string "ai.antigravity.browser.OpenIn" "$APP_PATH/PlugIns/OpenIn.appex/Info.plist"
 
 rm -rf "$WORK_DIR" "$ROOT_DIR/dist/$OUTPUT_NAME"
 mkdir -p "$WORK_DIR/Payload"
@@ -79,7 +79,7 @@ if [ "$BUILD_TYPE" = "--jailbroken" ]; then
 	unzip -p "Reynard-0.10.0.ipa" "Payload/Reynard.app/Frameworks/libswift_Concurrency.dylib" > "Payload/Reynard.app/Frameworks/libswift_Concurrency.dylib"
 fi
 
-# ChatGPT: zip without directory entries (-D) and at max compression (-9).
+# Antigravity: zip without directory entries (-D) and at max compression (-9).
 # The plain `zip -r` packed 509 empty directory entries into the .tipa
 # and used default compression; this saves ~800 KB on a ~103 MB file.
 # Only the zip container changes — the signed app bundle inside is
