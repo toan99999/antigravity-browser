@@ -47,7 +47,7 @@ final class OpenInViewController: UIViewController {
             }
             
             guard let browserURL = self.browserOpenURL(for: sharedURL) else {
-                self.finishWithError(message: "Unable to open ChatGPT.")
+                self.finishWithError(message: "Unable to open Antigravity.")
                 return
             }
             
@@ -74,7 +74,7 @@ final class OpenInViewController: UIViewController {
     }
     
     private func browserOpenURL(for sharedURL: URL) -> URL? {
-        guard var components = URLComponents(string: "chatgpt://open") else {
+        guard var components = URLComponents(string: "antigravity://open") else {
             return nil
         }
         
@@ -106,7 +106,7 @@ final class OpenInViewController: UIViewController {
             responder = r.next
         }
 
-        finishWithError(message: "Unable to open ChatGPT.")
+        finishWithError(message: "Unable to open Antigravity.")
     }
     
     private func clearBackgrounds(startingAt view: UIView?) {
@@ -124,7 +124,7 @@ final class OpenInViewController: UIViewController {
     
     private func finishWithError(message: String) {
         let error = NSError(
-            domain: "ai.chatgpt.browser.OpenIn",
+            domain: "ai.antigravity.browser.OpenIn",
             code: 1,
             userInfo: [NSLocalizedDescriptionKey: message]
         )
