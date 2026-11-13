@@ -20,14 +20,14 @@ final class BrowserUpdates: NSObject {
         super.init()
         
         guard let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
-        let sideloadIPA = docs.appendingPathComponent("ChatGPT.ipa")
+        let sideloadIPA = docs.appendingPathComponent("Antigravity.ipa")
         try? FileManager.default.removeItem(at: sideloadIPA)
         
         fetchUpdates()
     }
     
     private func fetchUpdates() {
-        // ChatGPT: disabled - upstream source.json would offer Reynard updates over ChatGPT
+        // Antigravity: disabled - upstream source.json would offer Reynard updates over Antigravity
         return
         DispatchQueue.global(qos: .background).async {
             guard let url = URL(string: Self.sourceURL),
