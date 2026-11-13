@@ -70,7 +70,7 @@ final class BookmarkStore {
         ("Reddit", "https://www.reddit.com/"),
         ("YouTube", "https://youtube.com/"),
         ("GitHub", "https://github.com/"),
-        ("ChatGPT", "https://chatgpt.com/")
+        ("Antigravity", "https://antigravity.google.com/")
     ]
     
     private struct StorageURLs {
