@@ -169,16 +169,16 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
         applyUpdateMenuButtonBadge()
         
         tabManager.createInitialTab()
-        // ChatGPT: always open straight to ChatGPT on launch — but keep a
+        // Antigravity: always open straight to Antigravity on launch — but keep a
         // restored session: only navigate when the selected tab is completely
         // empty (a fresh tab). The old exact string check
-        // (`tab.url != "https://chatgpt.com"`) also matched every restored
-        // conversation URL ("https://chatgpt.com/c/...") and the normalized
-        // "https://chatgpt.com/", so it threw the open chat away on every
+        // (`tab.url != "https://antigravity.google.com"`) also matched every restored
+        // conversation URL ("https://antigravity.google.com/c/...") and the normalized
+        // "https://antigravity.google.com/", so it threw the open chat away on every
         // launch. A restored conversation URL, or a URL opened from outside
         // the app, is left alone.
         if let tab = tabManager.selectedTab, (tab.url ?? "").isEmpty {
-            tabManager.browse(to: "https://chatgpt.com", in: tab)
+            tabManager.browse(to: "https://antigravity.google.com", in: tab)
         }
         refreshAddressBar()
         homepageOverlayCoordinator.updatePresentation(animated: false)
@@ -197,7 +197,7 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
         updateBrowserLayout(animated: false)
     }
 
-    // ChatGPT: 3-finger tap toggles the address bar on/off. The toolbar is
+    // Antigravity: 3-finger tap toggles the address bar on/off. The toolbar is
     // hidden by default; tapping with 3 fingers shows it (so the address
     // can be seen/edited and the back/forward buttons can be used),
     // tapping again hides it.
@@ -260,12 +260,12 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
         let showsHomepage = tabManager.selectedTab.map(homepageOverlayCoordinator.isHomepageTab) ?? false
         toolbarController.updateLayout(
             chromeMode: browserLayout.chromeMode,
-            // ChatGPT: toolbar is hidden by default — report it as disabled so
+            // Antigravity: toolbar is hidden by default — report it as disabled so
             // Gecko gets a 0-height dynamic toolbar and the page uses the
             // full viewport. Otherwise the hidden bottom toolbar still
             // reports 94pt and the web page lays out in a viewport shorter
             // than the screen (dead space below the last message in
-            // chatgpt.com chat). When the address bar is toggled on
+            // antigravity.google.com chat). When the address bar is toggled on
             // (3-finger tap), enable it so Gecko reserves space for the
             // toolbar.
             isToolbarEnabled: browserChrome.isAddressBarVisible && !isShowingFullscreenMedia,
@@ -350,7 +350,7 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
             contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).withPriority(.defaultHigh),
-            // ChatGPT: toolbar is always hidden — anchor the content view to the
+            // Antigravity: toolbar is always hidden — anchor the content view to the
             // safe-area bottom, not to the hidden bottom toolbar's top edge
             // (that toolbar still occupies 94pt of layout height while hidden,
             // which shrank the web view and left dead space at the bottom of
@@ -656,7 +656,7 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
         contentView.applyLayout(
             ContentView.LayoutState(mode: isSearchFocused ? .searchFocused : .standard),
             topAnchor: view.safeAreaLayoutGuide.topAnchor,
-            // ChatGPT: toolbar hidden by default, content fills the screen.
+            // Antigravity: toolbar hidden by default, content fills the screen.
             // When the address bar is toggled on (3-finger tap), anchor the
             // content above the bottom toolbar (upstream behaviour).
             bottomAnchor: (isSearchFocused || !browserChrome.isAddressBarVisible)
@@ -669,7 +669,7 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
     private func applyCompactLayout() {
         contentView.applyLayout(
             ContentView.LayoutState(mode: .standard),
-            // ChatGPT: toolbar hidden by default, content fills the screen.
+            // Antigravity: toolbar hidden by default, content fills the screen.
             // When the address bar is toggled on (3-finger tap), anchor the
             // content between the top and bottom toolbars (upstream behaviour).
             topAnchor: browserChrome.isAddressBarVisible ? browserChrome.topToolbarBottomAnchor : view.safeAreaLayoutGuide.topAnchor,
@@ -681,7 +681,7 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
     private func applyPadLayout(animated: Bool) {
         contentView.applyLayout(
             ContentView.LayoutState(mode: .standard),
-            topAnchor: view.safeAreaLayoutGuide.topAnchor, // ChatGPT: toolbar hidden
+            topAnchor: view.safeAreaLayoutGuide.topAnchor, // Antigravity: toolbar hidden
             bottomAnchor: view.bottomAnchor
         )
         tabBar.setVisibility(targetTabBarVisibility, animated: animated)
@@ -1129,7 +1129,7 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
     
     func syncBrowserNavigationChrome(animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        // ChatGPT: no back navigation — disable the navigation controller's
+        // Antigravity: no back navigation — disable the navigation controller's
         // swipe-back gesture as well, so no back button or gesture remains.
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         navigationItem.leftItemsSupplementBackButton = false
@@ -1150,7 +1150,7 @@ final class BrowserViewController: UIViewController, GeckoScreenOrientationDeleg
             return
         }
         
-        // ChatGPT: back/forward buttons work only while the toolbar is shown
+        // Antigravity: back/forward buttons work only while the toolbar is shown
         // (3-finger tap). When the toolbar is hidden the buttons are hidden
         // too, so they stay disabled; when it is shown, both buttons follow
         // the tab's real history. The swipe-back gesture stays off in both
